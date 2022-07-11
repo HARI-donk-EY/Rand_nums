@@ -20,12 +20,12 @@ for i in range(0,30):
 	err_n = np.size(err_ind) #computing the probability
 	err.append(err_n/simlen) #storing the probability values in a list
 
-
 plt.plot(x,err,'o')	
 plt.plot(x.T, err)#plotting the CDF
 plt.grid() #creating the grid
 plt.xlabel('$x$')
 plt.ylabel('$F_X(x)$')
+plt.legend(['Theoretical', 'Empirical'])
 
 #if using termux
 plt.savefig('fig/uni_cdf.png')
