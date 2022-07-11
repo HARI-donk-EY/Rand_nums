@@ -11,9 +11,3 @@ int  main(void) //main function begins
 
     return 0;
 }
-
-
-
-
-
-
