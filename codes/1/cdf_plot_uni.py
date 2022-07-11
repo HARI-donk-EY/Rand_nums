@@ -40,7 +40,7 @@ plt.plot(xi, l_er)#plotting the CDF
 plt.grid() #creating the grid
 plt.xlabel('$x$')
 plt.ylabel('$F_X(x)$')
-plt.legend(['Theoretical', 'Empirical'])
+plt.legend(['Empirical', 'Theoretical'])
 
 #if using termux
 plt.savefig('fig/uni_cdf.png')
