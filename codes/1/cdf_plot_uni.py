@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 
 
 x = np.linspace(-4,4,30)#points on the x axis
+xi = np.linspace(-4,4,300)
 simlen = int(1e6) #number of samples
 err = [] #declaring probability list
 #randvar = np.random.normal(0,1,simlen)
@@ -20,8 +21,22 @@ for i in range(0,30):
 	err_n = np.size(err_ind) #computing the probability
 	err.append(err_n/simlen) #storing the probability values in a list
 
+def give_line(x):
+	#for i in x:
+	if i < 0:
+		return 0
+	elif i<=1:
+		return i
+	else:
+		return 1
+
+l_er = []
+
+for i in xi:
+	l_er.append(give_line(i))
+
 plt.plot(x,err,'o')	
-plt.plot(x.T, err)#plotting the CDF
+plt.plot(xi, l_er)#plotting the CDF
 plt.grid() #creating the grid
 plt.xlabel('$x$')
 plt.ylabel('$F_X(x)$')
