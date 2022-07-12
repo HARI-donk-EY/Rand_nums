@@ -644,34 +644,146 @@ Therefore,
 
 \end{enumerate}
 
-%\section{Triangular Distribution}
-%\begin{enumerate}[label=\thesection.\arabic*
-%,ref=\thesection.\theenumi]
-%
-%\item 
-%Generate
-%\begin{align*}
-%T & = U_1 + U_2\\
-%\end{align*}
-%\solution Download the C source code by executing the following commands
-%\begin{lstlisting}
-%wget https://github.com/HARI-donk-EY/Rand_nums/blob/main/codes/4/tritrien.c
-%wget https://github.com/HARI-donk-EY/Rand_nums/blob/main/codes/coeffs.h
+\section{Triangular Distribution}
+\begin{enumerate}[label=\thesection.\arabic*
+,ref=\thesection.\theenumi]
 
-%\end{lstlisting}
-%Compile and run the C program by executing the following
-%\begin{lstlisting}
-%gcc trigen.c -lm -o trigen.out
-%./trigen.out
-%\end{lstlisting}
+\item 
+Generate
+\begin{align*}
+T & = U_1 + U_2\\
+\end{align*}
+\solution Download the C source code by executing the following commands
+\begin{lstlisting}
+wget https://github.com/HARI-donk-EY/Rand_nums/blob/main/codes/4/tritrien.c
+wget https://github.com/HARI-donk-EY/Rand_nums/blob/main/codes/coeffs.h
+\end{lstlisting}
+Compile and run the C program by executing the following
+\begin{lstlisting}
+gcc trigen.c -lm -o trigen.out
+./trigen.out
+\end{lstlisting}
 
-%\item
-%Find the $CDF$ of $T$.\\
-%\solution The $CDF$ of $T$ is given by:
-%\begin{align}
-%F_T(t) = \pr{T \leq t} = \pr{U_1 + U_2 \leq t}
-%\end{align}
+\item
+Find the $CDF$ of $T$.\\
+\solution The $CDF$ of $T$ is given by:
+\begin{align}
+F_T(t) = \pr{T \leq t} = \pr{U_1 + U_2 \leq t}
+\end{align}
+Since $U_1$, $U_2$ $\in$ $[0,1]$, from which we get that, $U_1 + U_2$ $\in$ $[0,2]$.\\
+Therefore, if $t \geq 2$, $U_1+U_2 \leq t$ is always true and $U_1+U_2 \leq t$ is always false if $t \leq 0$, making their probabilities $1$ and $0$ respectivey.\\
+For other cases, fix $U_1$ as $x$. Then,
+\begin{align*}
+x + U_2 \leq t \implies U_2 \leq t-x
+\end{align*}
+If $0 \leq t \leq 1$, $x \in [0,t]$,
+\begin{align*}
+F_T(t) & = \int_0^t \pr{U_2 \leq t-x} p_{U_1}(x) \text{ dx}\\
+	& = \int_0^t F_{U_2}(t-x) p_{U_1}(x) \text{ dx}\\
+\end{align*}
+Since,
+\begin{align*}
+0 \leq x \leq t \leq 1 & \implies t-x \leq 1\\
+& \implies F_{U_2}(t-x) = t-x
+\end{align*}
+We get,
+\begin{align*}
+F_T(t) & = \int_0^t (t-x).1\text{ dx}\\
+& = \sbrak{tx - \frac{x^2}{2}}_0^t\\
+& = \frac{t^2}{2}
+\end{align*}
+similarly, if $1 < t < 2$, $ x \in [0, 1]$,
+\begin{align*}
+t < 2 & \implies t-1 <1\\
+\text{For,\ \ \ } 0 < x < t-1 & \implies 1 \leq t-x \leq t\\
+\text{And for,\ \ \ } t-1<x<1 & \implies 0<t-1 \leq t-x \leq 1
+\end{align*}
 
-%\end{enumerate}
+By substituting,
+\begin{align*}
+F_T(t) & = \int_0^{t-1} 1 \text{ dx} + \int_{t-1}^1 (t-x)\text{ dx}\\
+& = t-1 + t - t^2 - t - \frac{1}{2} + \frac{(t-1)^2}{2} \\
+& = \frac{-t^2}{2} + 2t - 1
+\end{align*}
+
+Therefore,
+\begin{align*}
+F_T(t) = 
+\begin{cases}
+0 & t < 0 \\
+\dfrac{t^2}{2} & 0 \le t \le 1 \\
+ 2t -\dfrac{t^2}{2} - 1 & 1 < t < 2 \\
+1 & t \ge 2
+\end{cases}
+\end{align*}
+\newpage
+\begin{figure}
+	\centering
+	\includegraphics[width=\columnwidth]{./codes/4/fig/tri_cdf.png}
+	\caption{The CDF of $T$}
+	\label{fig: tri_cdf}
+\end{figure}
+\item Find the PDF of $T$.\\
+
+\solution We know that $PDF$ of $T$ can be given as,
+\begin{align*}
+p_T(t) &= \frac{\text{d}}{\text{dt}} F_T(t)
+\end{align*}
+Therefore,
+\begin{align*}
+p_T(t) & =
+\begin{cases}
+0 & t < 0 \\
+t & 0 \le t \le 1 \\
+2 - t & 1 < t < 2 \\
+0 & t \ge 2
+\end{cases}
+\end{align*}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\columnwidth]{./codes/4/fig/tri_pdf.png}
+	\caption{The PDF of $T$}
+	\label{fig: tri_pdf}
+\end{figure}
+
+\item Find the theoretical expressions for the PDF and CDF of $T$.\\
+
+\solution The theoretical expressions for the CDF and PDF are as follws,\\
+The CDF is,
+\begin{align*}
+F_T(t) = 
+\begin{cases}
+0 & t < 0 \\
+\dfrac{t^2}{2} & 0 \le t \le 1 \\
+ 2t -\dfrac{t^2}{2} - 1 & 1 < t < 2 \\
+1 & t \ge 2
+\end{cases}
+\end{align*}
+The PDF is,
+\begin{align*}
+p_T(t) & =
+\begin{cases}
+0 & t < 0 \\
+t & 0 \le t \le 1 \\
+2 - t & 1 < t < 2 \\
+0 & t \ge 2
+\end{cases}
+\end{align*}
+
+\item Verify your results through a plot.\\
+
+\solution Download the following Python codes that plot Fig. \ref{fig: tri_cdf} and Fig. \ref{fig: tri_pdf}
+\begin{lstlisting}
+wget https://github.com/HARI-donk-EY/Rand_nums/blob/main/codes/4/cdf_plot_tri.py
+wget https://github.com/HARI-donk-EY/Rand_nums/blob/main/codes/4/pdf_plot.py
+\end{lstlisting}
+Run the code by executing
+\begin{lstlisting}
+python3 cdf_plot_tri.py
+python3 pdf_plot.py
+\end{lstlisting}
+
+\end{enumerate}
 
 \end{document}
