@@ -280,12 +280,13 @@ void triangular(char *str, int len)
 {
 int i;
 FILE *fp;
-double U_1 = (double)rand()/RAND_MAX;
-double U_2 = (double)rand()/RAND_MAX;
+double U_1,U_2;
 fp = fopen(str,"w");
 //Generate numbers
 for (i = 0; i < len; i++)
 {
+U_1 = (double)rand()/RAND_MAX;
+ U_2 = (double)rand()/RAND_MAX;
 fprintf(fp,"%lf\n",(U_1+U_2));
 }
 fclose(fp);

@@ -41,7 +41,7 @@ theopdf = []
 for i in xi:
 	theopdf.append(tri_pdf(i))
 	
-#vec_tri_pdf = scipy.vectorize(tri_pdf)
+vec_tri_pdf = scipy.vectorize(tri_pdf)
 
 plt.plot(x[0:(maxrange-1)].T,pdf,'o')
 plt.plot(xi, theopdf)#plotting the CDF
