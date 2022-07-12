@@ -27,6 +27,7 @@ def tricdf(t):
 
 cdf_graph = scipy.vectorize(tricdf,otypes=[float])
 the_cdf = []
+
 for i in xi:
 	the_cdf.append(cdf_graph(i))
 
